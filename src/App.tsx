@@ -1,11 +1,18 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
-    <div>
-      <h1>Starting Waid test</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
 
