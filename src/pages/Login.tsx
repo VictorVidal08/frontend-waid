@@ -26,6 +26,7 @@ export default function Login() {
             </label>
             <button
             type="button"
+            onClick={ () => navigate('/social-posts')}
             >
                 Login
             </button>
