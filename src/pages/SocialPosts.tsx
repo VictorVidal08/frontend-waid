@@ -1,4 +1,5 @@
 import React from "react";
+import UsersList from "../components/usersList";
 
 export default function SocialPosts() {
 
@@ -15,6 +16,7 @@ export default function SocialPosts() {
             Olá {userName}!! bem vindo ao SocialPosts!!
             Você está logado com o email: {email}
             <img src={userImage} alt={userName} />
+            <UsersList/>
         </div>
     );
 }

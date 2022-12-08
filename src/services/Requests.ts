@@ -17,3 +17,12 @@ export async function login(userData: ILogin) {
       { email: userData.email, password: userData.password });
     return response;
 }
+
+export async function getUsers(token: string | null) {
+    const response = await axios.get('http://localhost:3001/users', {
+      headers: {
+        'authorization': token
+      }
+    });
+    return response;
+}

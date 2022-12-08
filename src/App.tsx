@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Register from './pages/Register';
 import SocialPosts from './pages/SocialPosts';
+import UsersList from './components/usersList';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/users-list" element={<UsersList />} />
         <Route path="/social-posts" element={<SocialPosts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
