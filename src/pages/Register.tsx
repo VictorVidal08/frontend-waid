@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import { register } from "../services/Requests";
 import { IRegister } from "../interfaces/IRegister";
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default function Register() {
 
+    const theme = createTheme();
     const navigate = useNavigate();
 
     const [userName, setName] = useState('');
@@ -19,80 +27,104 @@ export default function Register() {
         const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
         if (
-          userName.length >= MIN_NAME_LENGTH
-          && email.match(regex)
-          && password.length >= MIN_PASSWORD_LENGTH
+            userName.length >= MIN_NAME_LENGTH
+            && email.match(regex)
+            && password.length >= MIN_PASSWORD_LENGTH
         ) {
-          setEnable(false);
+            setEnable(false);
         } else {
-          setEnable(true);
+            setEnable(true);
         }
-  }, [userName, email, password]);
+    }, [userName, email, password]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const userData = {email, password, userName, image}
+        const userData = { email, password, userName, image }
         const user = await register(userData as IRegister);
         const { token } = user.data;
-        const userRegister = {email, userName, image, token}
+        const userRegister = { email, userName, image, token }
         console.log('REGISTRO', userRegister);
         localStorage.setItem('user', JSON.stringify(userRegister));
         navigate('/social-posts');
     };
 
     return (
-        <div>
-        <h1>Register</h1>
-        <form
-            onSubmit={ (e) => handleSubmit(e) }
-        >
-            <label>
-                Email:
-                <input
-                placeholder="Email"
-                type="text" 
-                name="email"
-                value={ email }
-                onChange={ ({ target }) => setEmail(target.value) }
-                />
-            </label>
-            <label>
-                Name:
-                <input
-                type="text"
-                name="name"
-                placeholder="userName"
-                value={ userName }
-                onChange={ ({ target }) => setName(target.value) }
-                />
-            </label>
-            <label>
-                Profile Image (optional):
-                <input
-                type="text"
-                name="image"
-                placeholder="Image URL"
-                value={ image }
-                onChange={ ({ target }) => setImage(target.value) }
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                placeholder="Password"
-                type="password"
-                name="password"
-                value={ password }
-                onChange={ ({ target }) => setPassword(target.value) }
-                />
-            </label>
-            <button
-            type="submit"
-            disabled={ enable }
-            >
-                Register
-            </button>
-        </form>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Typography component="h1" variant="h5">Register</Typography>
+                    <Box component="form"
+                        noValidate sx={{ mt: 1 }}
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            value={email}
+                            onChange={({ target }) => setEmail(target.value)}
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            value={userName}
+                            onChange={({ target }) => setName(target.value)}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="name"
+                            label="Name"
+                            type="text"
+                            id="name"
+                            autoComplete="name"
+                        />
+                        <TextField
+                            value={image}
+                            onChange={({ target }) => setImage(target.value)}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="image"
+                            label="Image"
+                            type="text"
+                            id="image"
+                            autoComplete="image"
+                        />
+                        <TextField
+                            value={password}
+                            onChange={({ target }) => setPassword(target.value)}
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+
+                        <Button
+                            type="submit"
+                            disabled={enable}
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Register
+                        </Button>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }
