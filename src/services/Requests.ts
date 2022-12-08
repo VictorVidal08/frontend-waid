@@ -26,3 +26,12 @@ export async function getUsers(token: string | null) {
     });
     return response;
 }
+
+export async function getPosts(token: string | null) {
+  const response = await axios.get('http://localhost:3001/posts', {
+    headers: {
+      'authorization': token
+    }
+  });
+  return response;
+}

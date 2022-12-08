@@ -15,10 +15,9 @@ export default function UsersList() {
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
         const token = userData.token;
-        console.log(token);
         const fetchUsers = async () => {
-        const response = await getUsers(token);
-        setUsers(response.data);
+            const response = await getUsers(token);
+            setUsers(response.data);
         };
         fetchUsers();
     }, []);
