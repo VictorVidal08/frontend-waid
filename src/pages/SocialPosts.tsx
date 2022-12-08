@@ -25,7 +25,6 @@ export default function SocialPosts() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     width: '100%',
-                    backgroundColor: 'green',
                 }}>
                 <Box
                     sx={{
@@ -33,7 +32,6 @@ export default function SocialPosts() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        backgroundColor: 'red',
                     }}
                 >
                     <Typography component="h1" variant="h2">SocialPosts</Typography>
@@ -53,7 +51,6 @@ export default function SocialPosts() {
                     <Box
                         sx={{
                             display: 'flex',
-                            backgroundColor: 'grey',
                         }}
                     >
                         <UsersList />
@@ -61,7 +58,6 @@ export default function SocialPosts() {
                     <Box
                         sx={{
                             display: 'flex',
-                            backgroundColor: 'blue',
                         }}
                     >
                         <Posts />

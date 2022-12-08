@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getUsers } from '../services/Requests';
 import { IUser } from "../interfaces/IUser";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
 
 export default function UsersList() {
     const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);    
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (users.length > 0) {
-          setLoading(false);
+            setLoading(false);
         }
-      }, [users]);
+    }, [users]);
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
@@ -23,17 +28,25 @@ export default function UsersList() {
     }, []);
 
     return (
-        <div>
-        <h1>UsersList</h1>
-        { loading ?
-            <p>Loading...</p>
-            : users.map((user: IUser) => (
-                <div key={user.id}>
-                    <p>{user.userName}</p>
-                    <p>{user.email}</p>
-                </div>
-            ))
-        }
-        </div>
+        <Container component="main">
+            <CssBaseline />
+            <Box>
+                <Typography component="h1" variant="h5">UsersList</Typography>
+                {loading ?
+                    <p>Loading...</p>
+                    : users.map((user: IUser) => (
+                        <Box key={user.id}
+                            sx={{
+                                border: '1px solid black',
+                                padding: '5px',
+                            }}
+                        >
+                            <p>{user.userName}</p>
+                            <p>{user.email}</p>
+                        </Box>
+                    ))
+                }
+            </Box>
+        </Container>
     );
 }
