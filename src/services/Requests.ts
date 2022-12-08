@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { IRegister } from '../interfaces/IRegister';
 import { ILogin } from '../interfaces/ILogin';
+import { ICreate } from '../interfaces/ICreate';
 
 //  Local: http://localhost:3001/user
 //  Production link: https://backend-waid-production.up.railway.app/register
@@ -31,6 +32,16 @@ export async function getPosts(token: string | null) {
   const response = await axios.get('http://localhost:3001/posts', {
     headers: {
       'authorization': token
+    }
+  });
+  return response;
+}
+
+export async function createPost(createData: ICreate) {
+  const response = await axios.post('http://localhost:3001/post',
+  { userId: createData.userId, content: createData.content, title: createData.title }, {
+    headers: {
+      'authorization': createData.token
     }
   });
   return response;
