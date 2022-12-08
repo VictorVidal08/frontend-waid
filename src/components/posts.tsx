@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IPost } from "../interfaces/IPost";
-import { getPosts } from "../services/Requests";
+import { deletePost, getPosts } from "../services/Requests";
 
 export default function Posts() {
     const [posts, setPosts] = useState([]);
@@ -24,6 +24,14 @@ export default function Posts() {
         };
         fetchPosts();
     }, []);
+
+    const handleDelete = async (id: number) => {
+        console.log(id);
+        const userData = JSON.parse(localStorage.getItem('user') || '{}');
+        const token = userData.token;
+        await deletePost(id, token);
+        window.location.reload();
+    };
 
     return (
         <div>
@@ -48,6 +56,7 @@ export default function Posts() {
                         </button>
                         <button
                         type="button"
+                        onClick={ () => handleDelete(post.id)}
                         >
                             Excluir
                         </button>

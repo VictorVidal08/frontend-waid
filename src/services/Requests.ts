@@ -57,3 +57,12 @@ export async function updatePost(updateData: IUpdate) {
   });
   return response;
 };
+
+export async function deletePost(postId: number, token: string | null) {
+  const response = await axios.delete(`http://localhost:3001/post/${postId}`, {
+    headers: {
+       'authorization': token
+    }
+  });
+  return response;
+};  
