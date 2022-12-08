@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { IPost } from "../interfaces/IPost";
 import { getPosts } from "../services/Requests";
 
 export default function Posts() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (posts.length > 0) {
@@ -17,7 +20,6 @@ export default function Posts() {
         const token = userData.token
         const fetchPosts = async () => {
             const response = await getPosts(token);
-            console.log(response.data)
             setPosts(response.data);
         };
         fetchPosts();
@@ -26,7 +28,10 @@ export default function Posts() {
     return (
         <div>
             <h1>Posts</h1>
-            <button>Criar Post</button>
+            <button
+            type="button"
+            onClick={ () => navigate('/create-post') }
+            >Criar Post</button>
 
             { loading ?
                 <p>Loading...</p>
@@ -37,6 +42,7 @@ export default function Posts() {
                         <p>{post.content}</p>
                         <button
                         type="button"
+                        onClick={ () => navigate(`/update-post/${post.id}`) }
                         >
                             Editar
                         </button>

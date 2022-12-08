@@ -49,6 +49,12 @@ export default function CreatePost() {
         >
             OK
         </button>
+        <button
+        type="button"
+        onClick={ () => navigate('/social-posts') }
+        >
+          Voltar
+        </button>
       </form>
     </div>
   );

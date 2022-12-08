@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IRegister } from '../interfaces/IRegister';
 import { ILogin } from '../interfaces/ILogin';
 import { ICreate } from '../interfaces/ICreate';
+import { IUpdate } from '../interfaces/IUpdate';
 
 //  Local: http://localhost:3001/user
 //  Production link: https://backend-waid-production.up.railway.app/register
@@ -46,3 +47,13 @@ export async function createPost(createData: ICreate) {
   });
   return response;
 }
+
+export async function updatePost(updateData: IUpdate) {
+  const response = await axios.patch(`http://localhost:3001/post/${updateData.postId}`,
+  { title: updateData.title, content: updateData.content }, {
+    headers: {
+      'authorization': updateData.token
+    }
+  });
+  return response;
+};
