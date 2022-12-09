@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+# Boas vindas ao repositório frontEnd do projeto <b>Social Media</b>!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto foi desenvolvido como teste técnico da WAID!!
 
-## Available Scripts
+Aqui você vai encontrar os detalhes de como foi o desenvolvimento do projeto e quais foram os requisitos técnicos necessários para a entrega do desafio.
 
-In the project directory, you can run:
+---
+# Desafios do projeto:
 
-### `npm start`
+CRUD é um acrônimo para **C**reate, **R**ead, **U**pdate and **D**elete. Em português seria **Criar**, **Ler**, **Atualizar** e **Deletar** registros. Nesse projeto trabalhei diretamente com a manipulação no banco de dados MySQL, utilizando do ORM Sequelize para a manipulação do banco, onde estão registrados as tabelas de usuários (Users) e seus respectivos posts (SocialPosts).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+--- 
+## Como rodar o projeto:
+### ⚠️⚠️⚠️ Importante ⚠️⚠️⚠️
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+⚠️⚠️Para o front-end funcionar perfeitamente, o backend da aplicação deve estar funcionando.⚠️⚠️
 
-### `npm test`
+Para subir o backend da aplicação, deve ser seguido o tutorial no Readme do repositório: https://github.com/VictorVidal08/backend-waid 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone a aplicação com o comando: 
+```
+git clone git@github.com:VictorVidal08/frontend-waid.git
+```
+Entre no diretório da aplicação:
+```
+cd frontend-waid
+```
+Instale as dependências do projeto:
+```
+npm install
+```
+O projeto utiliza as portas 3306 (base de dados), 3001 para o backend 3000 para frontend. Estas portas precisam estar livres para que a aplicação funcione.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Telas:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Página de Login com botão desabilitado:
+<img src='./images/loginDisabled.png' alt='loginDisabled' width='600'/>
+</br>
 
-### `npm run eject`
+#### Página de Login com botão habilitado (informações preenchidas corretamente):
+<img src='./images/loginEnabled.png' alt='loginEnabled' width='600'/>
+</br>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Register:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Página de Cadastro de usuário com botão desabilitado:
+<img src='./images/registerDisabled.png' alt='registerDisabled' width='600' />
+</br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Página de Cadastro de usuário com botão habilitado (informações preenchidas corretamente):
+<img src='./images/registerEnabled.png' alt='registerEnabled' width='600' />
+</br>
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Main Page:
+#### Página principal da aplicação com imagem genérica (caso o usuário não cadastre uma imagem):
+<img src='./images/mainPageVictor.png' alt='mainPageVictor' width='600' />
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Página principal da aplicação com imagem cadastrada pelo usuário:
+<img src='./images/mainPageLewis.png' alt='mainPageLewis' width='600' />
+</br>
+
+---
+### Create Post:
+#### Página de criação de novos posts (sem informações preenchidas):
+<img src='./images/createPostDisabled.png' alt='createPostDisabled' width='600' />
+</br>
+
+#### Página de criação de novos posts (com informações preenchidas corretamente):
+<img src='./images/createPostEnabled.png' alt='createPostEnabled' width='600' />
+</br>
+
+#### Página de principal com novo post criado:
+<img src='./images/postCreated.png' alt='postCreated' width='600' />
+</br>
+
+---
+
+### Update Post:
+#### Página de edição de post existente:
+<img src='./images/updatePost.png' alt='updatePost' width='600' />
+</br>
+
+---
+## Próximos passos:
+
+Implementação de testes.
+
+---
