@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { IPost } from "../interfaces/IPost";
 import { useNavigate } from "react-router-dom";
 import { getPosts, updatePost } from "../services/Requests";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function UpdatePost() {
   const [title, setTitle] = useState("");
@@ -12,7 +18,7 @@ export default function UpdatePost() {
   const postId = Number(window.location.pathname.split('/')[2]);
 
   useEffect(() => {
-    const getPostById = async() => {
+    const getPostById = async () => {
       const userData = JSON.parse(localStorage.getItem('user') || '{}');
       const token = userData.token
       const allPosts = await getPosts(token);
@@ -21,10 +27,10 @@ export default function UpdatePost() {
       setContent(toUpdatePost.content);
     };
     getPostById();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleUpdate = async() => {
+  const handleUpdate = async () => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
     const token = userData.token
     const updateData = { postId, title, content, token };
@@ -33,41 +39,59 @@ export default function UpdatePost() {
   };
 
   return (
-    <div>
-      <h1>Update Post</h1>
-      <form>
-        <label>
-            Title:
-            <input
-            type="text"
-            name="title"
-            placeholder="Edit Title"
-            value={ title }
+    <Container component="main">
+      <CssBaseline />
+      <Box
+        sx={{ maxWidth: 450, margin: 'auto', marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
+        <Typography component="h1" variant="h2">Update Post</Typography>
+        <Box component="form"
+          noValidate sx={{ mt: 1 }}
+        >
+          <TextField
+            value={title}
             onChange={e => setTitle(e.target.value)}
-            />
-        </label>
-        <label>
-            Content:
-            <input
-            type="text"
-            name="content"
-            placeholder="Edit Content"
-            value={ content }
+            autoComplete="title"
+            autoFocus
+            margin="normal"
+            required
+            fullWidth
+            id="Title"
+            label="Title:"
+          />
+          <TextField
+            value={content}
             onChange={e => setContent(e.target.value)}
-            />
-        </label>
-        <button
-        type="button"
-        onClick={ handleUpdate }
-        >
-            OK
-        </button>
-        <button
-        type="button"
-        >
-          Voltar
-        </button>
-      </form>
-    </div>
+            autoComplete="content"
+            autoFocus
+            margin="normal"
+            required
+            fullWidth
+            id="Content"
+            label="Content:"
+          />
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-evenly' }}
+          >
+            <Button
+              type="button"
+              onClick={handleUpdate}
+              variant="contained"
+              sx={{ mt: 3, mb: 2, width: '100px' }}
+            >
+              OK
+            </Button>
+            <Button
+              type="button"
+              onClick={() => navigate('/social-posts')}
+              variant="contained"
+              sx={{ mt: 3, mb: 2, width: '100px' }}
+            >
+              Voltar
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Container >
   );
 }

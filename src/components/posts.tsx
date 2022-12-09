@@ -56,12 +56,14 @@ export default function Posts() {
                     : posts.map((post: IPost) => (
                         <Box key={post.id}
                             sx={{
-                                border: '1px solid black',
+                                border: '1px gray solid',
+                                borderRadius: '5px',
                                 padding: '5px',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 alignItems: 'center',
+                                margin: '5px'
                             }}
                         >
                             <p>{post.user.userName}</p>

@@ -37,8 +37,10 @@ export default function UsersList() {
                     : users.map((user: IUser) => (
                         <Box key={user.id}
                             sx={{
-                                border: '1px solid black',
+                                border: '1px gray solid',
                                 padding: '5px',
+                                borderRadius: '5px',
+                                margin: '5px'
                             }}
                         >
                             <p>{user.userName}</p>

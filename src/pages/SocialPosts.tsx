@@ -38,7 +38,7 @@ export default function SocialPosts() {
                     Olá {userName}!! bem vindo ao SocialPosts!!
                     Você está logado com o email: {email}
                     <img
-                        style={{ width: '100px', height: '100px' }}
+                        style={{ width: '100px', height: '100px', borderRadius: '20%' }}
                         src={userImage} alt={userName} />
                 </Box>
                 <Box
