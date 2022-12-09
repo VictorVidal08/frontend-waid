@@ -10,6 +10,15 @@ Aqui você vai encontrar os detalhes de como foi o desenvolvimento do projeto e 
 CRUD é um acrônimo para **C**reate, **R**ead, **U**pdate and **D**elete. Em português seria **Criar**, **Ler**, **Atualizar** e **Deletar** registros. Nesse projeto trabalhei diretamente com a manipulação no banco de dados MySQL, utilizando do ORM Sequelize para a manipulação do banco, onde estão registrados as tabelas de usuários (Users) e seus respectivos posts (SocialPosts).
 
 --- 
+
+# Principais Tecnologias utilizadas:
+
+- React;
+- TypesScript;
+- MaterialUi para estilização;
+- Axios para conexão com backend.
+
+---
 ## Como rodar o projeto:
 ### ⚠️⚠️⚠️ Importante ⚠️⚠️⚠️
 
@@ -29,6 +38,11 @@ Instale as dependências do projeto:
 ```
 npm install
 ```
+Inicie a aplicação:
+```
+npm start
+```
+
 O projeto utiliza as portas 3306 (base de dados), 3001 para o backend 3000 para frontend. Estas portas precisam estar livres para que a aplicação funcione.
 
 ---
