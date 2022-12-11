@@ -34,7 +34,6 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const user = await login(formLogin as ILogin);
-      console.log(user);
       const userData = user.data;
       localStorage.setItem('user', JSON.stringify(userData));
       navigate('/social-posts')

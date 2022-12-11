@@ -23,7 +23,7 @@ export default function Posts() {
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
-        const token = userData.token
+        const token = userData.token;
         const fetchPosts = async () => {
             const response = await getPosts(token);
             setPosts(response.data);
@@ -38,6 +38,18 @@ export default function Posts() {
         await deletePost(id, token);
         window.location.reload();
     };
+
+    const handleUpdate = (id: string, postId: number) => {
+        console.log('UserPostID', id);
+        const userData = JSON.parse(localStorage.getItem('user') || '{}');
+        const userId = userData.id;
+        console.log('loggedUserID', userId);
+        if (Number(id) !== userId) {
+            alert('Você não pode editar este post');
+            return
+        }
+        navigate(`/update-post/${postId}`)
+    ;}
 
     return (
         <Container component="main">
@@ -78,7 +90,7 @@ export default function Posts() {
                             >
                                 <Button
                                     type="button"
-                                    onClick={() => navigate(`/update-post/${post.id}`)}
+                                    onClick={() => handleUpdate(post.user.id, post.id)}
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
