@@ -23,7 +23,7 @@ export default function Posts() {
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
-        const token = userData.token
+        const token = userData.token;
         const fetchPosts = async () => {
             const response = await getPosts(token);
             setPosts(response.data);
@@ -31,13 +31,26 @@ export default function Posts() {
         fetchPosts();
     }, []);
 
-    const handleDelete = async (id: number) => {
-        console.log(id);
+    const handleDelete = async (id: string, postId: number) => {
         const userData = JSON.parse(localStorage.getItem('user') || '{}');
-        const token = userData.token;
-        await deletePost(id, token);
+        const { token, id: userId } = userData;
+        if (Number(id) !== userId) {
+            alert('Você não pode deletar este post');
+            return
+        }
+        await deletePost(postId, token);
         window.location.reload();
     };
+
+    const handleUpdate = (id: string, postId: number) => {
+        const userData = JSON.parse(localStorage.getItem('user') || '{}');
+        const userId = userData.id;
+        if (Number(id) !== userId) {
+            alert('Você não pode editar este post');
+            return
+        }
+        navigate(`/update-post/${postId}`)
+    ;}
 
     return (
         <Container component="main">
@@ -78,7 +91,7 @@ export default function Posts() {
                             >
                                 <Button
                                     type="button"
-                                    onClick={() => navigate(`/update-post/${post.id}`)}
+                                    onClick={() => handleUpdate(post.user.id, post.id)}
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
@@ -87,7 +100,7 @@ export default function Posts() {
                                 </Button>
                                 <Button
                                     type="button"
-                                    onClick={() => handleDelete(post.id)}
+                                    onClick={() => handleDelete(post.user.id, post.id)}
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}

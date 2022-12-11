@@ -17,7 +17,6 @@ export default function CreatePost() {
 
   const handleCreate = async () => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log('USERDATA', userData);
     const token = userData.token;
     const userId = userData.id;
     const createData: ICreate = { title, content, userId, token }
